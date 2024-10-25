@@ -12,8 +12,8 @@ const NavBar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                            <Link className="nav-link" to="/contacto">Contacto</Link>
+                            <Link className="nav-link active" aria-current="page" to="/">Clientes</Link>
+                            <Link className="nav-link" to="/interactions">Interactions</Link>
                             <Link className="nav-link" to="/about">About</Link>
                             <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
                             <li className="nav-item dropdown">
@@ -24,14 +24,12 @@ const NavBar = () => {
                                     <li><a className="dropdown-item" href="#">Action</a></li>
                                     <li><a className="dropdown-item" href="#">Another action</a></li>
                                     <li>
-                                        <a 
-                                            className="dropdown-item" 
-                                            href="#" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#buzonModal"
+                                    <Link 
+                                        className="dropdown-item" 
+                                        to="/buzon-quejas" 
                                         >
-                                            Buzón de quejas, sugerencias y reconocimientos
-                                        </a>
+                                        Buzón
+                                    </Link>
                                     </li>
                                 </ul>
                             </li>
@@ -41,7 +39,7 @@ const NavBar = () => {
             </nav>
 
             {/* Modal del Buzón de Quejas */}
-            <BuzonQuejas />
+            {/* <BuzonQuejas /> */}
         </div>
     )
 }

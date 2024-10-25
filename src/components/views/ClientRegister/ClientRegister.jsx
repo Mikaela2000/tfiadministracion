@@ -2,12 +2,27 @@ import { useState } from 'react';
 import TableClient from "../../inc/TableClient";
 import { Button, Modal, Form } from 'react-bootstrap';
 import NewClientModal from '../../inc/NewClientModal/NewClientModal';
+import { FaTrashAlt, FaEdit, FaEye } from 'react-icons/fa';
 
 import './ClienteRegister.css';
 
 
 const ClientRegister = () => {
-  
+    
+    const options = [
+        { icon: FaTrashAlt, type: 'delete' },
+        { icon: FaEdit, type: 'edit' }
+      ];
+    
+      const handleOptionClick = (id, type) => {
+        if (type === 'delete') {
+          console.log(`Eliminar cliente con ID: ${id}`);
+        } else if (type === 'edit') {
+          console.log(`Editar cliente con ID: ${id}`);
+        }
+      };
+    
+    
 
     return (
         <div className="background-container">
@@ -15,7 +30,7 @@ const ClientRegister = () => {
                 <h1 className="text-center mb-4">Gestión de Clientes</h1>
 
 
-                <TableClient className="table" />
+                <TableClient className='Table' options={options} onOptionClick={handleOptionClick} />;
 
 
  
