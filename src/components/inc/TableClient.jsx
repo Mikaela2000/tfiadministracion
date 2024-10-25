@@ -16,23 +16,49 @@ const TableClient = () => {
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>Juan López</td>
+                        <td>381456456</td>
+                        <td>juan@gmail.com</td>
                         <td><FaTrashAlt></FaTrashAlt></td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
+                        <td>Jacob Thornton</td>
+                        <td>3814477888</td>
+                        <td>jacob@gmail.com</td>
                         <td><FaTrashAlt></FaTrashAlt></td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td colspan>Larry the Bird</td>
-                        <td colspan>Larry the Bird</td>
-                        <td>@twitter</td>
+                        <td colspan>Larry S</td>
+                        <td colspan>325546855</td>
+                        <td>larry@gmail.com</td>
+                        <td><FaTrashAlt></FaTrashAlt></td>
+                        
+                    </tr>
+
+                    <tr>
+                        <th scope="row">4</th>
+                        <td colspan>Lucas M</td>
+                        <td colspan>55548846</td>
+                        <td>lucas@gmail.com</td>
+                        <td><FaTrashAlt></FaTrashAlt></td>
+                        
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td colspan>Camila L</td>
+                        <td colspan>43244444</td>
+                        <td>camila@gmail.com</td>
+                        <td><FaTrashAlt></FaTrashAlt></td>
+                        
+                    </tr>
+
+                    <tr>
+                        <th scope="row">6</th>
+                        <td colspan>Lucia R</td>
+                        <td colspan>54564888</td>
+                        <td>lucia@gmail.com</td>
                         <td><FaTrashAlt></FaTrashAlt></td>
                         
                     </tr>

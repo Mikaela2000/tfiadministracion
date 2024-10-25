@@ -1,0 +1,19 @@
+.container{
+    margin-top: 100px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container h2{
+    margin-bottom: 50px;
+}
+
+.container table{
+    width: 80%;
+}
+
+.container input{
+    width: 500px;
+}
