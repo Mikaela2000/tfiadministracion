@@ -1,0 +1,38 @@
+.background-container {
+    background-image: url('https://i.pinimg.com/564x/d0/9c/1a/d09c1a50d0aa4354cc1d9c96ffb127fe.jpg'); /* Cambia la ruta a tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Asegura que cubra toda la pantalla */
+    padding: 20px; 
+    min-width: 100vh; /* Asegura que ocupe todo el ancho */
+    position: relative; /* Asegura que el contenedor sea relativo a su posición */
+    left: 0; /* Alinea a la izquierda */
+    right: 0; /* Alinea a la derecha */
+    margin: 0; /* Elimina cualquier margen */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.container1{
+    min-width: 90%;
+}
+
+
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 90%;
+
+}
+.table{
+    width: 100%;
+}
+h2{
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
