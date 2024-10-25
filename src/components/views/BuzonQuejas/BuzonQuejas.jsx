@@ -21,61 +21,81 @@ const BuzonQuejas = () => {
         // Reinicia el formulario
         setFormData({ nombre: '', email: '', tipo: 'Queja', mensaje: '' });
         alert("Tu mensaje ha sido enviado con éxito.");
+        // Cierra el modal
+        const modalElement = document.getElementById('buzonModal');
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        if (modal) {
+            modal.hide();
+        }
     };
 
     return (
         <div className={style.container}>
-            <h2>Buzón de Quejas, Sugerencias y Reconocimientos</h2>
-            <form onSubmit={handleSubmit} className={style.form}>
-                <div className={style.formGroup}>
-                    <label htmlFor="nombre">Nombre:</label>
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        value={formData.nombre}
-                        onChange={handleChange}
-                        required
-                    />
+            <div className="modal fade" id="buzonModal" tabIndex="-1" aria-labelledby="buzonModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="buzonModalLabel">Buzón de Quejas, Sugerencias y Reconocimientos</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label htmlFor="nombre" className="form-label">Nombre:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="nombre"
+                                        name="nombre"
+                                        value={formData.nombre}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="form-label">Correo Electrónico:</label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="tipo" className="form-label">Tipo de Mensaje:</label>
+                                    <select
+                                        id="tipo"
+                                        name="tipo"
+                                        className="form-select"
+                                        value={formData.tipo}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="Queja">Queja</option>
+                                        <option value="Sugerencia">Sugerencia</option>
+                                        <option value="Reconocimiento">Reconocimiento</option>
+                                    </select>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="mensaje" className="form-label">Mensaje:</label>
+                                    <textarea
+                                        id="mensaje"
+                                        name="mensaje"
+                                        className="form-control"
+                                        value={formData.mensaje}
+                                        onChange={handleChange}
+                                        rows="4"
+                                        required
+                                    ></textarea>
+                                </div>
+                                <button type="submit" className="btn btn-primary">Enviar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div className={style.formGroup}>
-                    <label htmlFor="email">Correo Electrónico:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className={style.formGroup}>
-                    <label htmlFor="tipo">Tipo de Mensaje:</label>
-                    <select
-                        id="tipo"
-                        name="tipo"
-                        value={formData.tipo}
-                        onChange={handleChange}
-                    >
-                        <option value="Queja">Queja</option>
-                        <option value="Sugerencia">Sugerencia</option>
-                        <option value="Reconocimiento">Reconocimiento</option>
-                    </select>
-                </div>
-                <div className={style.formGroup}>
-                    <label htmlFor="mensaje">Mensaje:</label>
-                    <textarea
-                        id="mensaje"
-                        name="mensaje"
-                        value={formData.mensaje}
-                        onChange={handleChange}
-                        rows="4"
-                        required
-                    ></textarea>
-                </div>
-                <button type="submit" className={style.submitButton}>Enviar</button>
-            </form>
-            
+            </div>
         </div>
     );
 };
