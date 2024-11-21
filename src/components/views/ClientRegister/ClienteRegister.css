@@ -1,22 +1,23 @@
-/* App.css o ClientRegister.css */
 .background-container {
-    background-image: url('https://i.pinimg.com/564x/d0/9c/1a/d09c1a50d0aa4354cc1d9c96ffb127fe.jpg'); /* Cambia la ruta a tu imagen */
+   
+    background-color: rgb(255, 255, 255);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh; /* Asegura que cubra toda la pantalla */
-    padding: 20px; /* Añade algo de padding */
-    min-width: 100vh; /* Asegura que ocupe todo el ancho */
-    position: relative; /* Asegura que el contenedor sea relativo a su posición */
-    left: 0; /* Alinea a la izquierda */
-    right: 0; /* Alinea a la derecha */
-    margin: 0; /* Elimina cualquier margen */
+    min-height: 100vh; 
+    padding: 20px; 
+    min-width: 100vh;
+    position: relative; 
+    left: 0; 
+    right: 0;
+    margin: 0; 
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 .container{
     min-width: 90%;
+    padding: 40px !important;
 }
 .button-container{
     display: flex;
@@ -30,3 +31,23 @@
     width: 100%;
 }
 
+.buttonNuevo{
+    background-color: rgb(7,33,69) !important;
+}
+.btn-lupa{
+    border: none;
+    background-color: rgba(245, 222, 179, 0);
+    justify-content: center;
+    align-items: center;
+}
+.containerlupa{
+    width: 40px;
+}
+.containerlupa img{
+    width: 100%;
+}
+
+.buttoNewClient{
+    background-color: rgb(7,33,69) !important;
+    margin-top: 30px;
+}

@@ -1,0 +1,48 @@
+.form {
+  background-color: white;
+  width: 80%;
+  align-self: flex-end;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.landing {
+  background-color: #fffefe;
+
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.containerHero {
+  background: linear-gradient(rgba(11, 12, 13, 0.4), rgba(11, 12, 13, 0.4)),
+   url('../../../assets/landingImage3.webp');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+ .item{
+  cursor: pointer;
+  transition: transform 0.4s;
+  overflow: hidden;
+  width: 230px;
+  height: 210px;
+  background-color: #fff;
+}
+
+.item:hover {
+   scale: 1.1;
+}
+
+
+.contact {
+  background-color: #dc3545;
+  height: 70vh;
+}
+
