@@ -1,103 +1,106 @@
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import TablaQueja from '../../inc/TablaQuejas/TablaQuejas';
+import * as actions from '../../../redux/actions';
+import { Modal, Button, Form } from 'react-bootstrap';
 import style from "./BuzonQuejas.module.css";
-import { useState } from "react";
 
-const BuzonQuejas = () => {
-    const [formData, setFormData] = useState({
-        nombre: '',
-        email: '',
-        tipo: 'Queja',
-        mensaje: ''
-    });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+const Quejas = () => {
+    const dispatch = useDispatch();
+    const [showModal, setShowModal] = useState(false);
+    const [newQueja, setNewQueja] = useState({ fecha: "", detalle: "", estado: 'Pendiente' });
+     const userId = localStorage.getItem('userId');
+
+     
+
+    useEffect(() => {
+        dispatch(actions.getAllReportes());
+    }, [dispatch]);
+
+    
+    const handleClose = () => setShowModal(false);
+
+
+    const handleShow = () => setShowModal(true);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes enviar los datos a una API o manejarlos según sea necesario
-        console.log("Formulario enviado:", formData);
-        // Reinicia el formulario
-        setFormData({ nombre: '', email: '', tipo: 'Queja', mensaje: '' });
-        alert("Tu mensaje ha sido enviado con éxito.");
-        // Cierra el modal
-        const modalElement = document.getElementById('buzonModal');
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        if (modal) {
-            modal.hide();
-        }
+       
+        dispatch(actions.createReporte(newQueja, userId)); 
+        setShowModal(false);
+        setNewQueja({ detalle: '', estado: 'Pendiente' }); 
     };
 
     return (
-        <div className={style.container}>
-            <div className="modal fade" id="buzonModal" tabIndex="-1" aria-labelledby="buzonModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="buzonModalLabel">Buzón de Quejas, Sugerencias y Reconocimientos</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="nombre" className="form-label">Nombre:</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="nombre"
-                                        name="nombre"
-                                        value={formData.nombre}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">Correo Electrónico:</label>
-                                    <input
-                                        type="email"
-                                        className="form-control"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="tipo" className="form-label">Tipo de Mensaje:</label>
-                                    <select
-                                        id="tipo"
-                                        name="tipo"
-                                        className="form-select"
-                                        value={formData.tipo}
-                                        onChange={handleChange}
-                                    >
-                                        <option value="Queja">Queja</option>
-                                        <option value="Sugerencia">Sugerencia</option>
-                                        <option value="Reconocimiento">Reconocimiento</option>
-                                    </select>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="mensaje" className="form-label">Mensaje:</label>
-                                    <textarea
-                                        id="mensaje"
-                                        name="mensaje"
-                                        className="form-control"
-                                        value={formData.mensaje}
-                                        onChange={handleChange}
-                                        rows="4"
-                                        required
-                                    ></textarea>
-                                </div>
-                                <button type="submit" className="btn btn-primary">Enviar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        <div className="background-container">
+            <div className="container mt-5">
+                <h2 className={style.titulo}>Quejas y Sugerencias</h2>
+
+                <TablaQueja />
+                <button className={`btn btn-primary mt-3 ${style.btnAñadir}`} onClick={handleShow}>Añadir +</button>
+
+                {/* Modal para añadir nueva queja */}
+                <Modal show={showModal} onHide={handleClose}>
+    <Modal.Header closeButton>
+        <Modal.Title>Nueva Queja</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+
+             {/* Campo para Fecha */}
+             <Form.Group className="mb-3" controlId="fechaQueja">
+                <Form.Label>Fecha</Form.Label>
+                <Form.Control
+                    type="date"
+                    value={newQueja.fecha}
+                    onChange={(e) =>
+                        setNewQueja({ ...newQueja, fecha: e.target.value })
+                    }
+                    required
+                />
+            </Form.Group>
+
+            {/* Campo para Detalle */}
+            <Form.Group className="mb-3" controlId="detalleQueja">
+                <Form.Label>Detalle</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Ingrese el detalle de la queja"
+                    value={newQueja.detalle}
+                    onChange={(e) =>
+                        setNewQueja({ ...newQueja, detalle: e.target.value })
+                    }
+                    required
+                />
+            </Form.Group>
+
+            {/* Campo para Estado */}
+            <Form.Group className="mb-3" controlId="estadoQueja">
+                <Form.Label>Estado</Form.Label>
+                <Form.Select
+                    value={newQueja.estado}
+                    onChange={(e) =>
+                        setNewQueja({ ...newQueja, estado: e.target.value })
+                    }
+                    disabled 
+                >
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Atendida">Atendida</option>
+                </Form.Select>
+            </Form.Group>
+
+           
+            <Button variant="primary" type="submit">
+                Guardar
+            </Button>
+        </Form>
+    </Modal.Body>
+</Modal>
+
             </div>
         </div>
     );
 };
 
-export default BuzonQuejas;
+export default Quejas;

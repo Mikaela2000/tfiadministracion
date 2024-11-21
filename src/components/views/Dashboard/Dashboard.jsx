@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import style from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
 import AdminTableUsers from './AdminTableUsers/AdminTableUsers';
 import AdminTablePermisos from './AdminTablePermisos/AdminTablePermisos';
-
+import * as actions from "../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux"
 const Dashboard = () => {
-  // Estado para controlar qué componente se muestra
+
+  const dispatch = useDispatch();
   const [activeSection, setActiveSection] = useState('');
 
   const handleButtonClick = (section) => {
     setActiveSection(section);
   };
+
+  // useEffect(()=>{
+
+	// 	dispatch(actions.getAllUsers()).catch((error) => {
+	// 		console.error(error);
+	// })
+	// },[dispatch])
+
 
   return (
     <section className={style.dashboard}>
@@ -22,6 +32,7 @@ const Dashboard = () => {
           {/* Botón de Permisos */}
           <Button
             className={style.columnComponent}
+            style={{ backgroundColor: "rgb(79,70,230)" }}
             onClick={() => handleButtonClick('permissions')}
           >
             <i className="bi bi-houses-fill" /> Permisos
@@ -29,6 +40,7 @@ const Dashboard = () => {
           {/* Botón de Users */}
           <Button
             className={style.columnComponent}
+            style={{ backgroundColor: "rgb(79,70,230)" }}
             onClick={() => handleButtonClick('users')}
           >
             <i className="bi bi-people-fill" /> Users

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux"; 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import style from "./PanelRegistrarse.module.css";
+import * as actions from "../../../redux/actions";
 
 function PanelRegistrarse() {
+  const dispatch = useDispatch(); 
   const [show, setShow] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -43,25 +46,24 @@ function PanelRegistrarse() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Hardcoded user credentials for demonstration
-    const hardcodedEmail = "user@example.com";
-    const hardcodedPassword = "password123";
-
-    // Check if the input matches the hardcoded credentials
-    if (formData.email === hardcodedEmail && formData.password === hardcodedPassword) {
-      // Successful registration logic (e.g., save user data, show success message)
-      alert("User registered successfully!"); // Replace with your actual registration logic
-      handleClose(); // Close the modal
-    } else {
-      setError("Invalid email or password.");
-    }
+  
+  
+    dispatch(actions.register(formData))
+      .then(() => {
+        alert("User registered successfully!");
+        handleClose();
+      })
+      .catch((error) => {
+        setError("Registration failed.");
+        console.error(error);
+      });
   };
+  
 
   return (
     <>
-      <Button className="btn-danger" onClick={handleShow}>
-        Register
+      <Button className="" style={{ backgroundColor: "rgb(79,70,230)" }} onClick={handleShow}>
+        Nuevo usuario
       </Button>
 
       <Modal show={show} onHide={handleClose} className={style.modal}>
@@ -126,7 +128,7 @@ function PanelRegistrarse() {
 
             {error && <Alert variant="danger">{error}</Alert>}
 
-            <Button type="submit" variant="danger">
+            <Button type="submit" style={{ backgroundColor: "rgb(79,70,230)" }}>
               Register
             </Button>
           </Form>

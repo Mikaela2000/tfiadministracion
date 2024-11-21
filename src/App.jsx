@@ -2,28 +2,51 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/inc/NavBar';
 import ClientRegister from './components/views/ClientRegister/ClientRegister';
-import HistorialCompras from './components/views/HistorialCompras/HistorialCompras';
-import BuzonQuejas from './components/views/BuzonQuejas/BuzonQuejas';
+// import BuzonQuejas from './components/views/BuzonQuejas/BuzonQuejas';
 import Dashboard from './components/views/Dashboard/Dashboard';
 import Landing from './components/views/Landing/Landing';
 import Interactions from './components/views/interactions/Interactions';
+import LoginPanel from './components/inc/Login/LoginPanel';
+import Compras from './components/views/Compras/Compras';
+import CuentaCorriente from './components/views/CuentaCorriente/CuentaCorriente';
+import Footer from './components/inc/Footer/Footer'
+import Home from './components/views/Home/Home'
+import UpdateProfile from './components/views/UpdateProfile/UpdateProfile';
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from './redux/actions'
+import React, { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
   const location = useLocation();
-  const hiddenNavBarRoutes = ['/landing', '/dashboard']; // Rutas en las que no quieres que aparezca el NavBar
+  const hiddenNavBarRoutes = ['/landing', '/dashboard']; 
+  const userId = localStorage.getItem("userId");
+  console.log("soy el userid", userId)
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(actions.getUser(userId));
+    }
+  }, [dispatch, userId]); 
 
   return (
     <div className="app">
-      {/* Mostrar NavBar solo si la ruta actual no está en el arreglo de rutas ocultas */}
       {!hiddenNavBarRoutes.includes(location.pathname) && <NavBar />}
       <Routes>
-        <Route exact path="/" element={<ClientRegister />} />
-        <Route path="/compras" element={<HistorialCompras />} />
-        <Route path="/buzon-quejas" element={<BuzonQuejas />} />
+        <Route path="/" element={<Home />} />
+        <Route exact path="/client" element={<ClientRegister />} />
+        {/* <Route path="/buzon-quejas" element={<BuzonQuejas />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/landing" element={<Landing />} />
         <Route path="/interactions" element={<Interactions />} />
+        <Route path="/login" element={<LoginPanel />} />
+        <Route path="/compras" element={<Compras />} />
+        <Route path="/cuenta" element={<CuentaCorriente />} />
+
+        <Route path="/profile" element={<UpdateProfile />} />
+
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import "./NewInteractionModal.css";
+import "./UpdateInteraction.module.css";
 import { useDispatch } from "react-redux";
 import * as actions from "../../../redux/actions";
 
-const NewInteractionModal = ({ onClose, userId, clientId }) => {
+const UpdateInteraction = ({ onClose, userId, interactionId, initialValues }) => {
     const [formData, setFormData] = useState({ type: "", date: "", notes: "" });
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (initialValues) {
+            setFormData(initialValues);
+        }
+    }, [initialValues]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -15,12 +21,11 @@ const NewInteractionModal = ({ onClose, userId, clientId }) => {
 
     const handleSubmit = async () => {
         try {
-            console.log("Data to send:", { userId, clientId, formData });
-            await dispatch(actions.createInteraction(userId, clientId, formData));
-            await dispatch(actions.getAllInteractionByIdClient(clientId)); 
-            onClose();
+            console.log("Data to send:", { userId, interactionId, formData });
+            await dispatch(actions.updateInteraction(interactionId, userId, formData));
+            onClose(); // Cerrar el modal después de la actualización
         } catch (error) {
-            console.error("Error creating the interaction:", error);
+            console.error("Error updating the interaction:", error);
         }
     };
 
@@ -29,7 +34,7 @@ const NewInteractionModal = ({ onClose, userId, clientId }) => {
             <div className="modal-dialog">
                 <div className="modal-content text-dark">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">New Interaction</h5>
+                        <h5 className="modal-title" id="exampleModalLabel">Update Interaction</h5>
                         <button type="button" className="btn-close" onClick={onClose} aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -48,32 +53,31 @@ const NewInteractionModal = ({ onClose, userId, clientId }) => {
                                 </Form.Select>
                             </Form.Group>
 
-                            <Form.Group className="mb-3 label-left" controlId="date">
+                            <Form.Group className="mb-3 label-left" controlId="formBasicDate">
                                 <Form.Label>Date</Form.Label>
                                 <Form.Control
                                     type="date"
-                                    placeholder="Enter the date"
                                     name="date"
                                     value={formData.date}
                                     onChange={handleChange}
                                 />
                             </Form.Group>
 
-                            <Form.Group className="mb-3 label-left" controlId="notes">
+                            <Form.Group className="mb-3 label-left" controlId="formBasicNotes">
                                 <Form.Label>Details</Form.Label>
                                 <Form.Control
                                     as="textarea" 
                                     rows={5} 
-                                    placeholder="Details of the interaction"
                                     name="notes"
                                     value={formData.notes}
                                     onChange={handleChange}
+                                    placeholder="Details of the interaction"
                                 />
                             </Form.Group>
                         </Form>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Save</button>
+                        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Update</button>
                     </div>
                 </div>
             </div>
@@ -81,4 +85,4 @@ const NewInteractionModal = ({ onClose, userId, clientId }) => {
     );
 };
 
-export default NewInteractionModal;
+export default UpdateInteraction;

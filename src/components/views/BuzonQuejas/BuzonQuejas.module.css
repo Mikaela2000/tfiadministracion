@@ -6,6 +6,10 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /* margin-top: 100px; */
+    display: flex !important;
+    flex-direction: column;
+    justify-content: start !important;
+    align-items: start;
 }
 
 h2 {
@@ -59,4 +63,13 @@ textarea {
 
 .submitButton:hover {
     background-color: #0056b3;
+}
+
+.titulo{
+    color: rgb(216, 21, 21);
+    margin-bottom: 60px;
+}
+
+.btnAñadir{
+    background-color: rgb(7,33,69) !important;
 }
