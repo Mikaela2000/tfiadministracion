@@ -199,11 +199,11 @@ export const getUser = (id) => {
   };
 };
 
-export const getClient = (name) => {
+export const getClient = (dni) => {
   return async function (dispatch) {
     try {
       // Cambia la URL para utilizar el nombre en lugar del ID
-      const res = await axios.get(`${url}/employee/client/info/${name}`);
+      const res = await axios.get(`${url}/employee/client/info/${dni}`);
       console.log("traigo estos datos", res.data)
 
       return dispatch({

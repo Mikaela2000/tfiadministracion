@@ -16,7 +16,7 @@ const CuentaCorriente = () => {
 
     return (
         <div className="background-container">
-            <div className="container mt-5">
+            <div className="container " style={{ marginTop: '65px' }}>
                 <h2>Cuenta Corriente de {client ? client.nombre : "Cargando..."}</h2>
                 {/* <div className="mt-3 mb-3 w-100 text-center">
                     <form className="mb-3">
@@ -30,7 +30,7 @@ const CuentaCorriente = () => {
                     </form>
                 </div> */}
 
-                <TableCuentaCorriente clientId={clientId} />
+                <TableCuentaCorriente style={{ marginTop: '80px' }} className="container" clientId={clientId} />
                 
             </div>
         </div>

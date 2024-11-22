@@ -44,8 +44,9 @@ const Interactions = () => {
 
                 <TableInteraction clientId={clientId}  />
                 <button
-                    className="btn btn-primary mb-3"
+                    className="btn mb-3 "
                     onClick={() => setShowModal(true)}
+                    style={{ backgroundColor: 'rgb(7,33,69)', color: "white"}}
                 >
                     <FaPlusSquare /> Add Interaction
                 </button>

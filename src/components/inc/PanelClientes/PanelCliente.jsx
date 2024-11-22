@@ -7,19 +7,19 @@ import style from "./PanelClientes.module.css";
 import * as actions from "../../../redux/actions";
 
 function PanelCliente({ onClose, selectedPanel }) {
-    const [clientName, setClientName] = useState("");  
+    const [clientDNI, setClientDNI] = useState("");  
     const dispatch = useDispatch();  
     const navigate = useNavigate(); 
 
     const handleChange = (e) => {
-        setClientName(e.target.value);
+        setClientDNI(e.target.value);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
        
-        const client = await dispatch(actions.getClient(clientName)); 
+        const client = await dispatch(actions.getClient(clientDNI)); 
       console.log("soy el cliente", client.payload.id)
         if (client && client.payload.id) {
         
@@ -36,19 +36,20 @@ function PanelCliente({ onClose, selectedPanel }) {
         <div className={style.overlay}>
             <div className={style.panel}>
                 <button className={style.closeButton} onClick={onClose}>✕</button>
-                <h2 className="text-center">Buscar Cliente por Nombre</h2>
+                <h2 className="text-center" style={{ marginTop: '40px' }}>Buscar cliente por DNI</h2>
                 <Form onSubmit={handleSubmit} className="text-center">
                     <Form.Group controlId="formClientName" className="mb-3">
-                        <Form.Label className={style.label}>Nombre del Cliente</Form.Label>
+                        {/* <Form.Label className={style.label}>DNI del Cliente</Form.Label> */}
                         <Form.Control
                             type="text"
-                            placeholder="Ingrese el nombre del cliente"
-                            value={clientName}
+                            placeholder="Ingrese el DNI del cliente"
+                            value={clientDNI}
                             onChange={handleChange}
                             className={style.input}
+                            style={{ marginTop: '30px', marginBottom: '30px'}}
                         />
                     </Form.Group>
-                    <Button variant="primary" type="submit" className={style.button}>
+                    <Button  style={{ backgroundColor: 'rgb(7,33,69)' }}  type="submit" className={style.button}>
                         Buscar Cliente
                     </Button>
                 </Form>

@@ -11,7 +11,7 @@ const TableCuentaCorriente = ({ clientId }) => {
     }, [dispatch, clientId]);
 
     return (
-        <div>
+        <div  style={{ marginTop: '70px' }}>
             <table className="table table-striped table-bordered border-dark">
                 <thead>
                     <tr>

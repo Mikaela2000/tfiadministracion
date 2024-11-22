@@ -16,13 +16,15 @@ const Compras = () => {
     useEffect(() => {
         dispatch(actions.getAllCompraByIdClient(clientId));
     }, [dispatch, clientId]);
+    const client = useSelector((state) => state.clients.find(c => c.id === clientId));
 
+    const nameClient= client.nombre;
 
     const handleDownloadPDF = () => {
-        generateReporteCompras(compras); 
+        generateReporteCompras(compras, nameClient); 
     };
 
-    const client = useSelector((state) => state.clients.find(c => c.id === clientId));
+
 
     return (
         <div className="background-container">
