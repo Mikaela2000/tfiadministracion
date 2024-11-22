@@ -27,12 +27,15 @@ function App() {
   const navigate = useNavigate();
   const hiddenNavBarRoutes = ['/landing', '/dashboard'];
   const userId = localStorage.getItem("userId");
+  const userRole = useSelector(state => state.user?.role || "guest"); 
 
   const loggedIn = useSelector(state => state.loggedIn);
+
 
   useEffect(() => {
     if (userId) {
       dispatch(actions.getUser(userId));
+      // console.log(userRole.role)
     }
   }, [dispatch, userId]);
 
@@ -51,11 +54,15 @@ function App() {
             <ClientRegister />
           </ProtectedRoute>
         } />
-        <Route path="/dashboard" element={
+ {
+
+userRole && userRole === "admin" ? <Route path="/dashboard" element={
           <ProtectedRoute loggedIn={loggedIn}>
             <Dashboard />
           </ProtectedRoute>
-        } />
+        } /> :null
+ }
+
         <Route path="/interactions" element={
           <ProtectedRoute loggedIn={loggedIn}>
             <Interactions />
