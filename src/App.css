@@ -11,3 +11,9 @@
   min-height: 100vh;
 }
 
+@media (max-width: 480px) {
+  #root {
+    min-width:auto;
+  
+  }
+  }

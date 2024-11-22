@@ -20,11 +20,6 @@ function Hero () {
         <Col className='col-12 mt-4 d-flex justify-content-start mb-5'>
             <LoginPanel/>
         </Col>
-        {/* <Col className='col-12 d-flex justify-content-center align-items-center'>
-            <small className='text-light fw-semibold mb-2 p-2' style={{ position: 'absolute', bottom: '0', backgroundColor: 'rgba(11, 12, 13, 0.4)'}}> 
-                You do not have an account? <PanelRegistrarse />
-            </small>
-        </Col> */}
         </Row>
       </Container>
     )
