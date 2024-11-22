@@ -79,7 +79,7 @@ const ClientRegister = () => {
                 <h1 className="text-center mb-4">Gestión de Clientes</h1>
 
 
-                <TableClient className="Table" clients={filteredClients} options={options} onOptionClick={handleOptionClick} />
+                <TableClient className="" clients={filteredClients} options={options} onOptionClick={handleOptionClick} />
 
 
                 <div className="d-flex justify-content-end mb-3">

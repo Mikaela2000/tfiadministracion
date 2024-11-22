@@ -30,12 +30,11 @@ function Home() {
                     <h3>Sitio</h3>
                 </div>
 
-
-
                 <div className={style.containerCards}>
 
-                    <Link to="/client" className={style.cardLink}>
+                    
                         <div className={style.card}>
+                        <Link to="/client" className={style.cardLink}>
                             <div className={style.cardIzquierda}>
                                 <div className={style.containerImg}>
                                     <img
@@ -48,9 +47,10 @@ function Home() {
                             <div className={style.containerPlus}>
                                 <FaPlus />
                             </div>
+                            </Link>
                         </div>
 
-                    </Link>
+                    
 
                     <div className={style.card} onClick={() => handleCardClick("Interacciones")}>
                         <div className={style.cardIzquierda}>

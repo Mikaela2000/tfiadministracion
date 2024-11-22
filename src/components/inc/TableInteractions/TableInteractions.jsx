@@ -86,7 +86,7 @@ const TableInteraction = ({ clientId }) => {
             <table className="table table-striped table-bordered border-dark">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        {/* <th scope="col">ID</th> */}
                         <th scope="col">Tipo</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Notas</th>
@@ -96,7 +96,7 @@ const TableInteraction = ({ clientId }) => {
                     {interactions.length > 0 ? (
                         filteredInteractions.map((interaction) => (
                             <tr key={interaction.id}>
-                                <th scope="row">{interaction.id}</th>
+                                {/* <th scope="row">{interaction.id}</th> */}
                                 <td>{interaction.type}</td>
                                 <td>{new Date(interaction.date).toLocaleDateString()}</td>
                                 <td style={{ display: 'flex', justifyContent: 'space-between' }}>

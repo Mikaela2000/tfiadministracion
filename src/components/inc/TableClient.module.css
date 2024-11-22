@@ -22,10 +22,44 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 
 }
 .labelCategoria{
     margin-right: 10px
 
 }
+
+/* Ajuste para tablets */
+@media (max-width: 768px) {
+ 
+}
+
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+    }
+
+    .tablaClienteContainer {
+        overflow-x: auto; 
+        width: 100%; 
+    }
+    
+    .clientTable {
+        font-size: 12px;
+    }
+    .email{
+       width: 150px;
+       white-space: normal;
+       word-break: break-word; /* Rompe palabras largas si es necesario */
+       text-align: left;
+       padding: 0;
+    }
+   
+}
+
