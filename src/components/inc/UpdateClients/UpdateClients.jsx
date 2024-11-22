@@ -8,8 +8,10 @@ const UpdateClients = ({ onClose, clientId, initialValues }) => {
     const [formData, setFormData] = useState({ nombre: "", telefono: "", email: "", categoria: "" });
     const dispatch = useDispatch();
 
+    
     useEffect(() => {
         if (initialValues) {
+            console.log("soy los valores inciiales", initialValues)
             setFormData(initialValues);
         }
     }, [initialValues]);

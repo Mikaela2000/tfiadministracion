@@ -11,6 +11,9 @@
 
   box-sizing: border-box;
   scroll-behavior: smooth;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .containerHero {
@@ -25,6 +28,8 @@
   overflow: hidden;
   padding-top: 120px;
   padding-bottom: 120px;
+  
+ 
 }
 
  .item{
@@ -42,7 +47,6 @@
 
 
 .contact {
-  background-color: #dc3545;
+  background-color: rgb(7,33,69);
   height: 70vh;
 }
-

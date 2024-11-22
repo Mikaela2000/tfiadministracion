@@ -36,27 +36,27 @@ function UpdateProfile() {
 
   const handleSaveChanges = () => {
     const updatedFields = Object.entries(formData).reduce((acc, [key, value]) => {
-      if (value.trim()) acc[key] = value; 
+      if (value.trim()) acc[key] = value;
       return acc;
     }, {});
-  
+
     // Validar si las contraseñas coinciden antes de enviar los datos
     const validationErrors = validate(updatedFields);
-  
+
     if (updatedFields.password && updatedFields.password !== formData.confirmPassword) {
       validationErrors.confirmPassword = "⚠ Las contraseñas no coinciden";
     }
-  
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-  
+
     if (!userId) {
       setErrors({ userId: '⚠ No se encontró el ID del usuario.' });
       return;
     }
-  
+
     dispatch(updateUser(userId, updatedFields));
     alert('Perfil actualizado correctamente');
   };

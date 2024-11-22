@@ -1,24 +1,26 @@
 .background-container {
-   
     background-color: rgb(255, 255, 255);
-    background-size: cover;
+    /* background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh; 
+    background-repeat: no-repeat; */
+    /* min-height: 100vh; 
     padding: 20px; 
     min-width: 100vh;
     position: relative; 
     left: 0; 
     right: 0;
-    margin: 0; 
+    margin: 0;  */
     display: flex;
     align-items: center;
     flex-direction: column;
+    height: 100vh;
+    overflow-y: hidden;
+    /* padding: 20px; */
+    margin-top: 40px;
 }
-.container{
-    min-width: 90%;
-    padding: 40px !important;
-}
+/* .container{
+    padding-bottom: 100px;
+} */
 .button-container{
     display: flex;
     justify-content: space-between;
@@ -26,6 +28,48 @@
     
     width: 90%;
 
+}
+.tablaCliente {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    margin: 0 auto; /* Centra la tabla */
+    border-collapse: collapse; /* Elimina los espacios entre celdas */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.tablaCliente th,
+.tablaCliente td {
+    padding: 12px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Bordes de las celdas */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Ajuste para tablets */
+@media (max-width: 768px) {
+    .tablaCliente {
+        max-width: 90%; /* Reduce el ancho máximo */
+        font-size: 14px; /* Reduce el tamaño de la fuente */
+    }
+}
+
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+    .tablaCliente {
+        max-width: 100%; 
+        font-size: 12px;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+     
+    }
+
+    .tablaCliente th,
+    .tablaCliente td {
+        padding: 8px; 
+    }
 }
 .table{
     width: 100%;

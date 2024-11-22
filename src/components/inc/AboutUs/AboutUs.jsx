@@ -10,9 +10,9 @@ const AboutUs = () => {
   return (
     <Container fluid className='mb-5'>
       <Row style={{ backgroundColor: '#fff', height: '70vh'}}> 
-        <Col className='col-12 d-flex justify-content-center text-uppercase align-text-center text-nowrap'>
-              <h2 className='fw-bolder text-dark fw'>
-                  Sobre <span className='fw-bolder text-danger'>Nosotros</span>
+        <Col className='col-12 d-flex justify-content-center  text-uppercase align-text-center text-nowrap'>
+              <h2 className='fw-bolder text-dark fw mt-4'>
+                  Sobre <span style={{ color: 'rgb(7,33,69)' }} className='fw-bolder'>Nosotros</span>
               </h2>
           </Col>
           <div className='d-flex justify-content-center align-items-center p-5 ms-5' style={{ position: 'absolute', width: '90%'}}>

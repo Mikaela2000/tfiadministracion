@@ -18,7 +18,7 @@ const CuentaCorriente = () => {
         <div className="background-container">
             <div className="container mt-5">
                 <h2>Cuenta Corriente de {client ? client.nombre : "Cargando..."}</h2>
-                <div className="mt-3 mb-3 w-100 text-center">
+                {/* <div className="mt-3 mb-3 w-100 text-center">
                     <form className="mb-3">
                         <input
                             className="rounded-2 px-2 py-2"
@@ -28,7 +28,7 @@ const CuentaCorriente = () => {
                         />
                         <button className="btn btn-secondary ms-2" type="submit">Buscar</button>
                     </form>
-                </div>
+                </div> */}
 
                 <TableCuentaCorriente clientId={clientId} />
                 

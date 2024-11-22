@@ -56,7 +56,7 @@ function LoginPanel() {
 
   return (
     <>
-      <Button className="btn-danger" onClick={handleShow}>
+      <Button style={{ backgroundColor: 'rgb(7,33,69)' }} onClick={handleShow}>
         LOGIN
       </Button>
 
@@ -94,7 +94,7 @@ function LoginPanel() {
               </Alert>
             )}
 
-            <Button type="submit" variant="danger">
+            <Button style={{ backgroundColor: 'rgb(7,33,69)' }} type="submit" >
               Login
             </Button>
           </Form>

@@ -118,3 +118,94 @@
     font-size: 14px;
     margin-top: 5px;
   }
+  @media (max-width: 768px) {
+    .containerPrincipal {
+      flex-direction: column;
+      align-items: center;
+      width: auto; /* Permitir que el ancho se ajuste a la pantalla */
+      padding: 20px;
+      margin-top: 80px;
+    }
+  
+    .fotoPerfil {
+      margin-bottom: 20px; /* Espacio entre la foto y el formulario */
+      align-items: center;
+    }
+  
+    .containerImg {
+      width: 150px; 
+      height: 150px; 
+      margin: 0 auto; /* Centrar la imagen */
+    }
+  
+    .containerImg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    .container {
+      width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+      padding: 10px;
+    }
+  
+    .input {
+      width: 100%; /* Ocupa el 100% del contenedor */
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .button {
+      width: 100%;
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .containerPrincipal {
+      margin-top: 80px;
+      padding: 15px;
+    }
+  
+    .fotoPerfil {
+      margin-bottom: 15px;
+    }
+  
+    .containerImg {
+      width: 120px; 
+      height: 120px; 
+    }
+  
+    .containerImg img {
+      width: 100%;
+      height: 100%;
+    }
+  
+    .container {
+      width: 100%; /* Ajuste completo para móviles */
+      padding: 10px;
+    }
+  
+    .input {
+      font-size: 12px;
+      padding: 8px;
+    }
+  
+    .button {
+      font-size: 12px;
+      padding: 8px;
+    }
+  
+    .label {
+      font-size: 12px;
+    }
+  
+    .errorMessage {
+      font-size: 12px;
+      width: 100%;
+    }
+
+   
+  }
+  
