@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import NavBar from './components/inc/NavBar';
 import ClientRegister from './components/views/ClientRegister/ClientRegister';
 import BuzonQuejas from './components/views/BuzonQuejas/BuzonQuejas';
@@ -10,44 +10,85 @@ import LoginPanel from './components/inc/Login/LoginPanel';
 import Compras from './components/views/Compras/Compras';
 import CuentaCorriente from './components/views/CuentaCorriente/CuentaCorriente';
 // import Footer from './components/inc/Footer/Footer'
-import Home from './components/views/Home/Home'
+import Home from './components/views/Home/Home';
 import UpdateProfile from './components/views/UpdateProfile/UpdateProfile';
 import { useSelector, useDispatch } from "react-redux";
-import * as actions from './redux/actions'
+import * as actions from './redux/actions';
 import React, { useEffect } from "react";
+
+// Componente para manejar rutas protegidas
+const ProtectedRoute = ({ children, loggedIn }) => {
+  return loggedIn ? children : <Navigate to="/landing" />;
+};
 
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const hiddenNavBarRoutes = ['/landing', '/dashboard']; 
+  const navigate = useNavigate();
+  const hiddenNavBarRoutes = ['/landing', '/dashboard'];
   const userId = localStorage.getItem("userId");
-  console.log("soy el userid", userId)
+
+  const loggedIn = useSelector(state => state.loggedIn);
 
   useEffect(() => {
     if (userId) {
       dispatch(actions.getUser(userId));
     }
-  }, [dispatch, userId]); 
+  }, [dispatch, userId]);
 
   return (
     <div className="app">
-      {!hiddenNavBarRoutes.includes(location.pathname) && <NavBar />}
+      {!hiddenNavBarRoutes.includes(location.pathname) && loggedIn && <NavBar />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route exact path="/client" element={<ClientRegister />} />
-        {/* <Route path="/buzon-quejas" element={<BuzonQuejas />} /> */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* Rutas para usuarios autenticados */}
+        <Route path="/" element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <Home />
+          </ProtectedRoute>
+        } />
+        <Route path="/client" element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <ClientRegister />
+          </ProtectedRoute>
+        } />
+        <Route path="/dashboard" element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
+        <Route path="/interactions" element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <Interactions />
+          </ProtectedRoute>
+        } />
+        <Route path="/compras" element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <Compras />
+          </ProtectedRoute>
+        } />
+        <Route path="/cuenta" element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <CuentaCorriente />
+          </ProtectedRoute>
+        } />
+        <Route path="/quejas" element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <BuzonQuejas />
+          </ProtectedRoute>
+        } />
+        <Route path="/profile" element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <UpdateProfile />
+          </ProtectedRoute>
+        } />
+
+        {/* Rutas para usuarios no autenticados */}
         <Route path="/landing" element={<Landing />} />
-        <Route path="/interactions" element={<Interactions />} />
         <Route path="/login" element={<LoginPanel />} />
-        <Route path="/compras" element={<Compras />} />
-        <Route path="/cuenta" element={<CuentaCorriente />} />
-        <Route path="/quejas" element={<BuzonQuejas />} />
 
-        <Route path="/profile" element={<UpdateProfile />} />
-
+        {/* Redirección de rutas no definidas */}
+        <Route path="*" element={<Navigate to="/landing" />} />
       </Routes>
-      {/* <Footer></Footer> */}
     </div>
   );
 }
