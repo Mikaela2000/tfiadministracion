@@ -161,6 +161,12 @@ const TableClient = () => {
                                                 </Dropdown.Item>
 
                                                 <Dropdown.Item onClick={() =>
+                                                    handleOptionClick(client.id, 'newInteraction', client)
+                                                }>
+                                                    Interacciones
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item onClick={() =>
                                                     handleOptionClick(client.id, 'edit', client)
                                                 }>
                                                     <FaEdit /> Actualizar
@@ -170,11 +176,7 @@ const TableClient = () => {
                                                 }>
                                                     <FaTrashAlt /> Eliminar
                                                 </Dropdown.Item>
-                                                <Dropdown.Item onClick={() =>
-                                                    handleOptionClick(client.id, 'newInteraction', client)
-                                                }>
-                                                    Interacciones
-                                                </Dropdown.Item>
+                                              
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </td>

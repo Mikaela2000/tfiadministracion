@@ -26,7 +26,8 @@ import {
   APPLY_FILTERS,
   POST_NEW_REPORTE,
   GET_ALL_REPORTES,
-  ESTADO_REPORTE
+  ESTADO_REPORTE,
+  GET_ALL_CLIENT_DNI_FAIL
 
 } from "./actionTypes";
 
@@ -211,7 +212,11 @@ export const getClient = (dni) => {
         payload: res.data,
       });
     } catch (error) {
-      console.log(error);
+      
+      dispatch({
+        type: GET_ALL_CLIENT_DNI_FAIL,
+        payload: error.response ? error.response.data.error : error.error, // Manejo de errores del backend
+      });
     }
   };
 };

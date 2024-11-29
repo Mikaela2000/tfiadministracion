@@ -23,7 +23,8 @@ import {
   APPLY_FILTERS,
   POST_NEW_REPORTE,
   GET_ALL_REPORTES,
-  ESTADO_REPORTE
+  ESTADO_REPORTE,
+  GET_ALL_CLIENT_DNI_FAIL,
 } from "./actionTypes";
 
 const initialState = {
@@ -49,6 +50,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case GET_ALL_CLIENT_DNI_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      }
 
     case ESTADO_REPORTE:
       return {
@@ -110,7 +117,7 @@ const rootReducer = (state = initialState, action) => {
         allReportes: action.payload,
       };
 
-      case POST_NEW_REPORTE:
+    case POST_NEW_REPORTE:
       return {
         ...state,
         reportes: [...state.reportes, action.payload],
@@ -178,12 +185,12 @@ const rootReducer = (state = initialState, action) => {
         token: action.payload.token,
         user: action.payload.user,
       };
-      
-      case "CLEAR_AUTH_ERROR":
-        return {
-          ...state,
-          error: null,
-        };
+
+    case "CLEAR_AUTH_ERROR":
+      return {
+        ...state,
+        error: null,
+      };
 
     case LOGIN_FAIL:
       console.log("Error en login:", action.payload);

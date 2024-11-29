@@ -98,7 +98,7 @@ const TableInteraction = ({ clientId }) => {
                             <tr key={interaction.id}>
                                 {/* <th scope="row">{interaction.id}</th> */}
                                 <td>{interaction.type}</td>
-                                <td>{new Date(interaction.date).toLocaleDateString()}</td>
+                                <td>{interaction.date}</td>
                                 <td style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     {interaction.notes}
                                     <div style={{ position: 'relative' }}>
@@ -131,7 +131,7 @@ const TableInteraction = ({ clientId }) => {
                                                         cursor: 'pointer'
                                                     }}
                                                 >
-                                                    Update
+                                                    Actualizar
                                                 </button>
                                                 <button
                                                     onClick={() => handleOptionClick(interaction.id, 'delete')}
@@ -146,7 +146,7 @@ const TableInteraction = ({ clientId }) => {
                                                         color: 'red'
                                                     }}
                                                 >
-                                                    Delete
+                                                    Eliminar
                                                 </button>
                                             </div>
                                         )}

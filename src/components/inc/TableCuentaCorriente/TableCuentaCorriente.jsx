@@ -28,7 +28,7 @@ const TableCuentaCorriente = ({ clientId }) => {
                         cuentaCorriente.map((record) => (
                             <tr key={record.id}>
                                 <th scope="row">{record.id}</th>
-                                <td>{new Date(record.fecha).toLocaleDateString()}</td> {/* Formato de fecha */}
+                                <td>{record.fecha}</td> {/* Formato de fecha */}
                                 <td>{record.description}</td>
                                 <td>${record.importe.toFixed(2)}</td>
                                 <td>${record.saldo.toFixed(2)}</td>

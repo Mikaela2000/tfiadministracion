@@ -14,9 +14,11 @@ const NewInteractionModal = ({ onClose, userId, clientId }) => {
     };
 
     const handleSubmit = async () => {
+        const formDataToSend = { ...formData, date: formData.date }; // No modificar
+        console.log("Data to send:", formDataToSend);
         try {
-            console.log("Data to send:", { userId, clientId, formData });
-            await dispatch(actions.createInteraction(userId, clientId, formData));
+            console.log("Data to send:", { userId, clientId, formDataToSend });
+            await dispatch(actions.createInteraction(userId, clientId, formDataToSend));
             await dispatch(actions.getAllInteractionByIdClient(clientId)); 
             onClose();
         } catch (error) {

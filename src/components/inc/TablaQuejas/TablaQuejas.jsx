@@ -46,7 +46,7 @@ const TableQuejas = () => {
                             <tr key={reporte.id}>
                                 {/* <th scope="row">{reporte.id}</th> */}
                                 <td style={getEstadoStyle(reporte.estado)}>
-                                    {new Date(reporte.fecha).toLocaleDateString()}
+                                {reporte.fecha}
                                 </td>
                                 <td style={getEstadoStyle(reporte.estado)}>
                                     {reporte.detalle}

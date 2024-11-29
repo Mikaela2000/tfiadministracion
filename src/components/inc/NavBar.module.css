@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     border: rgba(255, 255, 255, 0.76) !important;
+
   }
   .imgUser{
     width: 30px;
@@ -15,6 +16,10 @@
     background-color: rgba(61, 11, 11, 0) !important;
     padding: 0 !important;
     width: 60px !important;
+  }
+  .containerA{
+    align-items: center !important;
+    height: 100%px !important;
   }
   
    .buttonMenu{
@@ -31,19 +36,29 @@
    
    }
 
+
+
+   /* .container{
+    min-width: 100%;
+   } */
+
   
    .navbar {
     height: 80px; /* Adjust this value as needed */
+    display: flex !important;
+    flex-direction: row !important;
 
-    padding: 20px !important;
+    padding: 40px !important;
     transition: all 0.3s ease-in-out; /* Smooth transition for height change */
     background-color: rgb(7,33,69) !important;
     color: white !important;
 }
 .links {
-
+  height:39px !important;
+  align-items: center !important;
   color: white !important;
 }
+
 
 .navbar-brand {
     font-size: 1.5em; /* Optional: increase font size for the brand */
@@ -51,4 +66,98 @@
 
 .nav-link {
     font-size: 1.1em; /* Optional: increase font size for nav links */
+}
+
+.elementosNav{
+
+  height:100% !important;
+  /* width: 100vh !important; */
+}
+
+.title{
+  font-size: 30px !important;
+  color: rgb(127, 129, 192) !important;
+}
+
+
+
+@media (max-width: 480px) {
+
+  .navbar {
+    padding: 10px !important;
+    /* width: 100% !important; */
+
+}
+
+.links{
+ color: black !important;
+
+}
+
+.elementosNav{
+  background-color: rgb(255, 255, 255) !important;
+  margin-top: 30px;
+  height:200px !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+.container{
+  /* max-height: 0; */
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  width: 100% !important;
+
+}
+.links{
+  margin-bottom: 30px !important;
+}
+
+.containerNews {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;  /* O usa 'fixed' si deseas que se quede fijo mientras haces scroll */
+  right: 80px;  /* Ajusta la distancia desde el borde derecho */
+  top: 50%; /* Centrado vertical */
+  transform: translateY(-50%);  /* Centrado vertical exacto */
+  z-index: 1050;  /* Asegura que esté por encima de otros elementos */
+  border: rgba(255, 255, 255, 0.76) !important;
+  
+}
+
+/* Cambiar el ícono hamburguesa a X */
+.navbar-toggler-icon {
+  background-color: #000;
+  /* Cambiar el color de las líneas del menú hamburguesa */
+}
+
+.navbar-toggler-icon.closeIcon {
+  background-color: transparent;
+  /* Añadir estilos para mostrar la X, por ejemplo usando transform */
+}
+
+.navbar-toggler-icon.closeIcon::before {
+  content: '×';  /* Símbolo de la X */
+  font-size: 30px;
+  color: #fff;
+  display: block;
+  text-align: center;
+}
+
+.navbar-toggler {
+  border: none;  /* Remover borde del botón hamburguesa */
+}
+
+.burguer {
+  filter: invert(1) !important; /* Invierte el color del ícono predeterminado */
+  border: none !important;
+}
+.containerBurguer {
+  border: none !important; /* Elimina el borde */
+  background-color: transparent; /* Asegura que no haya fondo visible */
+  outline: none !important; /* Elimina el borde de enfoque */
+  box-shadow: none !important; /* Elimina sombras */
+  /* margin-right: -70px;  */
+}
 }
