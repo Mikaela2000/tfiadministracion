@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { Button, Modal, Form, Alert } from 'react-bootstrap';
 import TableClient from "../../inc/TableClient";
@@ -31,28 +31,40 @@ const ClientRegister = () => {
         }
     }, [searchText, clients]);
 
-    const handleInputChange = (e) => {
+    const handleChange  = (e) => {
         setSearchText(e.target.value);  
     };
 
-   
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const validateForm = () => {
+        if (!/^\d+$/.test(clientData.dni)) {
+            setError('DNI incorrecto');
+            return false;
+        }
+
+        if (!/^\d+$/.test(clientData.telefono)) {
+            setError('Teléfono incorrecto');
+            return false;
+        }
+
+        setError(''); // Limpiar error si pasa la validación
+        return true;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!validateForm()) return; // Detener envío si la validación falla
   
-    console.log("Datos enviados:", clientData); 
-  
-    dispatch(actions.newPostClient(userId, clientData))
-      .then(() => {
-        alert("User registered successfully!");
-        setShowModal(false); 
-        setClientData({ nombre: '', dni: '', telefono: '', email: '' });
-      })
-      .catch((error) => {
-        setError("Registration failed.");
-        console.error(error);
-      });
-  };
-  
+        dispatch(actions.newPostClient(userId, clientData))
+            .then(() => {
+                alert("Cliente registrado con éxito!");
+                setShowModal(false);
+                setClientData({ nombre: '', dni: '', telefono: '', email: '' });
+            })
+            .catch((error) => {
+                setError("Falló el registro del cliente.");
+                console.error(error);
+            });
+    };
 
     const options = [
         { icon: FaTrashAlt, type: 'delete' },
@@ -62,7 +74,6 @@ const ClientRegister = () => {
     const handleOptionClick = async (id, type) => {
         if (type === 'delete') {
             try {
-               
                 await dispatch(actions.deleteClient(id)); 
                 dispatch(actions.getAllClients());
             } catch (err) {
@@ -77,11 +88,7 @@ const ClientRegister = () => {
         <div className="background-container">
             <div className="container mt-5">
                 <h1 className="text-center mb-4">Gestión de Clientes</h1>
-
-
                 <TableClient className="" clients={filteredClients} options={options} onOptionClick={handleOptionClick} />
-
-
                 <div className="d-flex justify-content-end mb-3">
                     <Button className="buttonNuevo" onClick={() => setShowModal(true)}>Nuevo Cliente</Button>
                 </div>
@@ -93,8 +100,7 @@ const ClientRegister = () => {
                     <Modal.Title>Agregar Nuevo Cliente</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    {/* {success && <Alert variant="success">Cliente agregado exitosamente!</Alert>} */}
+                    
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="formNombre">
                             <Form.Label>Nombre</Form.Label>
@@ -126,7 +132,9 @@ const ClientRegister = () => {
                                 value={clientData.telefono}
                                 onChange={(e) => setClientData({ ...clientData, telefono: e.target.value })}
                                 required
+                    
                             />
+                           
                         </Form.Group>
 
                         <Form.Group controlId="formEmail">
@@ -139,6 +147,7 @@ const ClientRegister = () => {
                                 required
                             />
                         </Form.Group>
+                        {error && <Alert variant="danger" className=" mt-3">{error}</Alert>}
 
                         <Button className="buttoNewClient" variant="primary" type="submit">
                             Agregar
